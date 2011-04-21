@@ -1,0 +1,4 @@
+
+class Extract(object):
+    pass
+
