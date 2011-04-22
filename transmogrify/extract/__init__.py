@@ -15,7 +15,8 @@ class Extract(object):
             text = item['text'].decode('utf-8')
             tree = lxml.html.fromstring(text)
             content = tree.xpath('//*[@id="content"]')
-            # Look ma, no recursion! lxml iterates in "document order"
+            # Look ma, no recursion! lxml iterates over nodes in "document
+            # order"
             results = ''.join([lxml.etree.tostring(i) for i in content[0]])
             item['text'] = results
             yield item
