@@ -13,9 +13,6 @@ class Extract(object):
     def __iter__(self):
         for item in self.previous:
             text = item['text'].decode('utf-8')
-
-            import pdb; pdb.set_trace()
-            
             tree = lxml.html.fromstring(text)
             content = tree.xpath('//*[@id="content"]')
             # Look ma, no recursion! lxml iterates over nodes in "document
