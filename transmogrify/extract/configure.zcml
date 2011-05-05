@@ -1,5 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope">
 
+    <include package="collective.transmogrifier" />
+
+    <utility
+        component=".Extract"
+        name="transmogrify.extract"
+        />
 
 </configure>
