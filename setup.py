@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='transmogrify.extract',
     install_requires=[
-        'setuptools'
+        'setuptools',
         'lxml'
     ],
     entry_points = """
