@@ -9,17 +9,14 @@ class Extract(object):
 
     def __init__(self, transmogrifier, name, options, previous):
         self.previous = previous
+        self.decode = options['decode']
+        self.encode = options['encode']
 
     def __iter__(self):
         for item in self.previous:
-            try:
-                text = item['text'].decode('ascii')
-            except:
-                text = item['text'].decode('utf-8')
+            text = item['text'].decode(self.decode)
             tree = lxml.html.fromstring(text)
             content = tree.xpath('//*[@id="content"]')
-            # Look ma, no recursion! lxml iterates over nodes in "document
-            # order"
             results = ''.join([lxml.etree.tostring(i) for i in content[0]])
-            item['text'] = results.encode('utf-8')
+            item['text'] = results.encode(self.encode)
             yield item
