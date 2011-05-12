@@ -14,9 +14,15 @@ class Extract(object):
 
     def __iter__(self):
         for item in self.previous:
-            text = item['text'].decode(self.decode)
+            try:
+                text = item['text'].decode(self.decode)
+            except UnicodeDecodeError:
+                text = item['text']
             tree = lxml.html.fromstring(text)
             content = tree.xpath('//*[@id="content"]')
             results = ''.join([lxml.etree.tostring(i) for i in content[0]])
-            item['text'] = results.encode(self.encode)
+            try:
+                item['text'] = results.encode(self.encode)
+            except UnicodeEncodeError:
+                item['text'] = results
             yield item
