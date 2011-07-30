@@ -1,5 +1,5 @@
-import lxml
 from collective.transmogrifier.interfaces import ISectionBlueprint, ISection
+from lxml import etree, html
 from zope.interface import classProvides, implements
 
 
@@ -18,9 +18,9 @@ class Extract(object):
                 text = item['text'].decode(self.decode)
             except UnicodeDecodeError:
                 text = item['text']
-            tree = lxml.html.fromstring(text)
+            tree = html.fromstring(text)
             content = tree.xpath('//*[@id="content"]')
-            results = ''.join([lxml.etree.tostring(i) for i in content[0]])
+            results = ''.join([etree.tostring(i) for i in content[0]])
             try:
                 item['text'] = results.encode(self.encode)
             except UnicodeEncodeError:
