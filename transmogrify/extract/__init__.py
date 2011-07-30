@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from collective.transmogrifier.interfaces import ISectionBlueprint, ISection
 from lxml import etree, html
 from zope.interface import classProvides, implements
@@ -26,3 +27,11 @@ class Extract(object):
             except UnicodeEncodeError:
                 item['text'] = results
             yield item
+=======
+# See http://peak.telecommunity.com/DevCenter/setuptools#namespace-packages
+try:
+    __import__('pkg_resources').declare_namespace(__name__)
+except ImportError:
+    from pkgutil import extend_path
+    __path__ = extend_path(__path__, __name__)
+>>>>>>> e8902591032205128e6c6840a8b61517f56724a5
