@@ -19,5 +19,6 @@ setup(
         'transmogrify',
     ],
     packages=find_packages(),
+    url='https://github.com/aclark4life/transmogrify.extract',
     version='0.0.1',
 )
