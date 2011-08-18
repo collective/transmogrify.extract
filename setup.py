@@ -6,6 +6,7 @@ setup(
     author='Alex Clark',
     author_email='aclark@aclark.net',
     description='Extracts all content from within the specified CSS id or class',
+    license='GPL',
     long_description=open('README.rst').read() +
         open(os.path.join('docs','HISTORY.txt')).read(),
     include_package_data=True,
