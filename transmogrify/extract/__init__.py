@@ -11,6 +11,8 @@ class Extract(object):
         self.previous = previous
         self.decode = options['decode']
         self.encode = options['encode']
+        self.xpath_id = options['xpath_id']
+
 
     def __iter__(self):
         for item in self.previous:
@@ -19,7 +21,7 @@ class Extract(object):
             except UnicodeDecodeError:
                 text = item['text']
             tree = html.fromstring(text)
-            content = tree.xpath('//*[@id="content"]')
+            content = tree.xpath('//*[@id="%s"]' % self.xpath_id)
             results = ''.join([etree.tostring(i) for i in content[0]])
             try:
                 item['text'] = results.encode(self.encode)
