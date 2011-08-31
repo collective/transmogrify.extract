@@ -16,7 +16,7 @@ class Extract(object):
         if 'encode' in options:
             self.encode = options['encode']
         else:
-            self.decode = 'utf-8'
+            self.encode = 'utf-8'
         if 'id' in options:
             self._id = options['id']
         else:
@@ -37,4 +37,4 @@ class Extract(object):
                         item['text'] = results.encode(self.encode)
                     except UnicodeEncodeError:
                         item['text'] = results
-                    yield item
+            yield item
