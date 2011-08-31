@@ -20,7 +20,7 @@ class Extract(object):
         if 'id' in options:
             self._id = options['id']
         else:
-            raise SyntaxError, "Must specify xpath id"
+            self._id = "content"
 
     def __iter__(self):
         for item in self.previous:
