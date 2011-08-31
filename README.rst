@@ -2,6 +2,59 @@
 Introduction
 ============
 
-This blueprint extracts all content from within the specificed XPath id (e.g. <div
-id="content"…) from pipeline item['text'] and saves the results to pipeline item['text'].
+This blueprint extracts text from the specified CSS id or "content" by default.
 
+Installation
+============
+
+Sample installation with mr.migrator::
+
+    [buildout]
+    develop = .
+    extends = http://x.aclark.net/plone/4.1.x/develop.cfg
+    parts += migrate
+
+    [migrate]
+    recipe = mr.migrator
+    eggs =
+        transmogrify.extract
+        transmogrify.filesystem
+        transmogrify.ploneremote
+        transmogrify.pathsorter
+        transmogrify.print
+    pipeline = pipeline.cfg
+
+Usage
+=====
+
+Sample usage::
+
+    [transmogrifier]
+    pipeline =
+        source
+        extract
+        constructor
+        schemaupdater
+        print
+
+    [source]
+    blueprint = transmogrify.filesystem
+    directory = docs/sample_content
+    file-type = Document
+    file-field = text
+    wrap-data = false
+
+    [extract]
+    blueprint = transmogrify.extract
+
+    [constructor]
+    #blueprint = collective.transmogrifier.sections.folders
+    blueprint = transmogrify.ploneremote.remoteconstructor
+    target = http://admin:admin@localhost:8080/Plone
+
+    [schemaupdater]
+    blueprint = transmogrify.ploneremote.remoteschemaupdater
+    target = http://admin:admin@localhost:8080/Plone
+
+    [print]
+    blueprint = transmogrify.print
