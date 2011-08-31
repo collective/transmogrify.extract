@@ -14,7 +14,7 @@ setup(
         open(os.path.join('docs','HISTORY.txt')).read(),
     include_package_data=True,
     install_requires=[
-        'lxml'
+        'lxml',
         'mr.migrator',
         'setuptools',
     ],
