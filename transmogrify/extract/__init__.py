@@ -24,15 +24,17 @@ class Extract(object):
 
     def __iter__(self):
         for item in self.previous:
-            try:
-                text = item['text'].decode(self.decode)
-            except UnicodeDecodeError:
-                text = item['text']
-            tree = html.fromstring(text)
-            content = tree.xpath('//*[@id="%s"]' % self.xpath_id)
-            results = ''.join([etree.tostring(i) for i in content[0]])
-            try:
-                item['text'] = results.encode(self.encode)
-            except UnicodeEncodeError:
-                item['text'] = results
+            if 'text' in item.keys():
+                try:
+                    text = item['text'].decode(self.decode)
+                except UnicodeDecodeError:
+                    text = item['text']
+                tree = html.fromstring(text)
+                content = tree.xpath('//*[@id="%s"]' % self.xpath_id)
+                results = ''.join([etree.tostring(i) for i in content[0]])
+                try:
+                    item['text'] = results.encode(self.encode)
+                except UnicodeEncodeError:
+                    item['text'] = results
+
             yield item
