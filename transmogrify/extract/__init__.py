@@ -9,10 +9,18 @@ class Extract(object):
 
     def __init__(self, transmogrifier, name, options, previous):
         self.previous = previous
-        self.decode = options['decode']
-        self.encode = options['encode']
-        self.xpath_id = options['xpath_id']
-
+        if 'decode' in options:
+            self.decode = options['decode']
+        else:
+            self.decode = 'utf-8'
+        if 'encode' in options:
+            self.encode = options['encode']
+        else:
+            self.decode = 'utf-8'
+        if 'id' in options:
+            self._id = options['id']
+        else:
+            raise SyntaxError, "Must specify xpath id"
 
     def __iter__(self):
         for item in self.previous:
