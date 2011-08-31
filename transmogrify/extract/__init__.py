@@ -30,11 +30,11 @@ class Extract(object):
                 except UnicodeDecodeError:
                     text = item['text']
                 tree = html.fromstring(text)
-                content = tree.xpath('//*[@id="%s"]' % self.xpath_id)
-                results = ''.join([etree.tostring(i) for i in content[0]])
-                try:
-                    item['text'] = results.encode(self.encode)
-                except UnicodeEncodeError:
-                    item['text'] = results
-
-            yield item
+                content = tree.xpath('//*[@id="%s"]' % self._id) or None
+                if content is not None:
+                    results = ''.join([etree.tostring(i) for i in content[0]])
+                    try:
+                        item['text'] = results.encode(self.encode)
+                    except UnicodeEncodeError:
+                        item['text'] = results
+                    yield item
