@@ -2,6 +2,10 @@
 Introduction
 ============
 
+.. Note:: 
+
+    Transmogrifier itself includes a similarly scoped blueprint for codecs: http://pypi.python.org/pypi/collective.transmogrifier/1.3#codec-section
+
 This simple `Transmogrifier`_ blueprint extracts text (including HTML) from within the specified CSS id ("content" id by default, e.g. <div id="content">EXTRACT ME</div>).
 
 Installation
