@@ -5,7 +5,7 @@ import os
 setup(
     author='Alex Clark',
     author_email='aclark@aclark.net',
-    description='Extracts all content from within the specified CSS id or class',
+    description='Extracts all content from within the specified CSS id',
     entry_points={
         'z3c.autoinclude.plugin': 'target = transmogrify',
     },
