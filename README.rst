@@ -2,7 +2,7 @@
 Introduction
 ============
 
-This blueprint extracts text (including HTML) from within the specified CSS id ("content" id by default, e.g. <div id="content">EXTRACT ME</div>).
+This simple `Transmogrifier`_ blueprint extracts text (including HTML) from within the specified CSS id ("content" id by default, e.g. <div id="content">EXTRACT ME</div>).
 
 Installation
 ============
@@ -59,9 +59,6 @@ Sample usage::
     [print]
     blueprint = transmogrify.print
 
-.. _`mr.migrator`: http://pypi.python.org/pypi/mr.migrator
-
-
 Specify id
 ~~~~~~~~~~
 
@@ -80,3 +77,7 @@ By default, UTF-8 is used for both. But you can specify an alternative via::
     blueprint = transmogrify.extract
     decode = ALTERNATE CHARSET e.g. ascii, big5, gb2312, euc_kr, etc.
     encode = ALTERNATE CHARSET e.g. ascii, big5, gb2312, euc_kr, etc.
+
+.. _`mr.migrator`: http://pypi.python.org/pypi/mr.migrator
+.. _`Transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
+
