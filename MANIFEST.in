@@ -1,2 +1,3 @@
 include *.txt *.rst *.cfg *.py *.ini
-recursive-include docs *.txt *.html *.py *.zcml
+recursive-include docs *.txt *.html
+recursive-include transmogrify *.py *.zcml
