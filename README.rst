@@ -7,7 +7,7 @@ Introduction
     Transmogrifier itself includes a similarly scoped blueprint for codecs: http://pypi.python.org/pypi/collective.transmogrifier/1.3#codec-section
 
 This `Transmogrifier`_ blueprint extracts text from within the specified CSS
-class or id.
+id.
 
 Installation
 ============
