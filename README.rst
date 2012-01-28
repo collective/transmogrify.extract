@@ -6,32 +6,30 @@ Introduction
 
     Transmogrifier itself includes a similarly scoped blueprint for codecs: http://pypi.python.org/pypi/collective.transmogrifier/1.3#codec-section
 
-This simple `Transmogrifier`_ blueprint extracts text (including HTML) from within the specified CSS id ("content" id by default, e.g. <div id="content">EXTRACT ME</div>).
+This `Transmogrifier`_ blueprint extracts text from within the specified CSS
+class or id.
 
 Installation
 ============
 
-Sample installation (via `mr.migrator`_)::
+Sample installation via `mr.migrator`_::
 
     [buildout]
-    develop = .
-    extends = http://x.aclark.net/plone/4.1.x/develop.cfg
-    parts += migrate
+    extends = http://build.pythonpackages.com/buildout/plone/4.1.x-dev
 
-    [migrate]
-    recipe = mr.migrator
-    eggs =
+    [plone]
+    eggs += 
+        mr.migrator
         transmogrify.extract
         transmogrify.filesystem
         transmogrify.ploneremote
         transmogrify.pathsorter
         transmogrify.print
-    pipeline = pipeline.cfg
 
 Usage
 =====
 
-Sample usage::
+Sample usage in ``pipeline.cfg``::
 
     [transmogrifier]
     pipeline =
@@ -52,7 +50,6 @@ Sample usage::
     blueprint = transmogrify.extract
 
     [constructor]
-    #blueprint = collective.transmogrifier.sections.folders
     blueprint = transmogrify.ploneremote.remoteconstructor
     target = http://admin:admin@localhost:8080/Plone
 
@@ -66,11 +63,11 @@ Sample usage::
 Specify id
 ~~~~~~~~~~
 
-By default, the "content" id is used. But you can specify an alternative via::
+By default, the ``content`` id is used; specify an alternative with ``id``::
 
     [extract]
     blueprint = transmogrify.extract
-    id = ALTERNATE CSS ID e.g. wrapper, container, whatever
+    id = wrapper
 
 Encoding and decoding charsets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -79,9 +76,8 @@ By default, UTF-8 is used for both. But you can specify an alternative via::
 
     [extract]
     blueprint = transmogrify.extract
-    decode = ALTERNATE CHARSET e.g. ascii, big5, gb2312, euc_kr, etc.
-    encode = ALTERNATE CHARSET e.g. ascii, big5, gb2312, euc_kr, etc.
+    decode = ascii
+    encode = ascii
 
 .. _`mr.migrator`: http://pypi.python.org/pypi/mr.migrator
 .. _`Transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
-

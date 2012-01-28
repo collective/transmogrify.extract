@@ -1,0 +1,2 @@
+include *.txt *.rst *.cfg *.py
+recursive-include docs *.txt *.html *.py
